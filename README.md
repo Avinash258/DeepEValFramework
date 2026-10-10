@@ -4,6 +4,11 @@ A TypeScript evaluation framework for AI applications — **RAG**, **chatbots**,
 
 Scores are `0–1`. A metric passes when `score >= threshold`.
 
+[![CI](https://github.com/Avinash258/DeepEValFramework/actions/workflows/ci.yml/badge.svg)](https://github.com/Avinash258/DeepEValFramework/actions/workflows/ci.yml)
+[![Deploy evaluation report](https://github.com/Avinash258/DeepEValFramework/actions/workflows/pages.yml/badge.svg)](https://github.com/Avinash258/DeepEValFramework/actions/workflows/pages.yml)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](./LICENSE)
+[![Evaluation report](https://img.shields.io/badge/report-GitHub%20Pages-success)](https://avinash258.github.io/DeepEValFramework/)
+
 ## Install & build
 
 ```bash
@@ -11,6 +16,22 @@ npm install
 npm run build
 npm test
 ```
+
+## CI & evaluation report (GitHub)
+
+| Workflow | What it does |
+|----------|----------------|
+| `.github/workflows/ci.yml` | On every push/PR: `npm ci` → build → test |
+| `.github/workflows/pages.yml` | On push to `main`: generate HTML report → deploy to **GitHub Pages** |
+
+**Live report URL:** https://avinash258.github.io/DeepEValFramework/
+
+### One-time GitHub setup
+
+1. Repo → **Settings** → **Pages**
+2. **Source:** GitHub Actions
+3. Push to `main` (or run **Actions → Deploy evaluation report → Run workflow**)
+4. After the workflow succeeds, open the Pages URL above
 
 ## Architecture
 
@@ -293,6 +314,7 @@ npm run examples:jev
 npm run examples:rag
 npm run examples:chatbot
 npm run examples:agent
+npm run report          # writes reports/evaluation-report.html
 ```
 
 ## JevEval vs GEval
@@ -309,4 +331,12 @@ npm run examples:agent
 
 ## License
 
-MIT
+This project is licensed under the **Apache License 2.0** — see [LICENSE](./LICENSE).
+
+We use Apache-2.0 (not MIT) because:
+
+- It matches the usual open-source stance of DeepEval-style tooling (Apache-2.0 family).
+- It adds an explicit **patent grant** and clearer contribution terms than MIT.
+- Copyright remains with you; others may use/modify under the same license terms.
+
+If you later need the code to stay private/proprietary, change `package.json` `"license"` to `"UNLICENSED"`, replace `LICENSE` with an “All rights reserved” notice, and update this section.
