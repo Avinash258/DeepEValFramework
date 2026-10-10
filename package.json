@@ -1,0 +1,57 @@
+{
+  "name": "@deepeval-framework/core",
+  "version": "0.1.0",
+  "description": "TypeScript evaluation framework for AI apps — chatbots, RAG, agents, and custom metrics",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./test-case": {
+      "types": "./dist/test-case/index.d.ts",
+      "import": "./dist/test-case/index.js"
+    },
+    "./metrics": {
+      "types": "./dist/metrics/index.d.ts",
+      "import": "./dist/metrics/index.js"
+    },
+    "./dataset": {
+      "types": "./dist/dataset/index.d.ts",
+      "import": "./dist/dataset/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "examples:rag": "tsx examples/rag.eval.ts",
+    "examples:chatbot": "tsx examples/chatbot.eval.ts",
+    "examples:agent": "tsx examples/agent.eval.ts",
+    "examples:jev": "tsx examples/jev-eval.eval.ts",
+    "report": "tsx examples/generate-report.ts",
+    "report:open": "tsx examples/generate-report.ts"
+  },
+
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "llm",
+    "evaluation",
+    "rag",
+    "chatbot",
+    "agents",
+    "testing",
+    "deepeval"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.9"
+  }
+}
