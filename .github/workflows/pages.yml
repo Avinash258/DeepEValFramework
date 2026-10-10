@@ -5,17 +5,18 @@ on:
     branches: [main, master]
   workflow_dispatch:
 
+# Publishes via the `gh-pages` branch (Deploy from a branch), which is more
+# reliable than actions/deploy-pages when the Pages "GitHub Actions" source
+# has not been enabled yet.
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
-  build-report:
+  deploy-report:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -36,25 +37,16 @@ jobs:
       - name: Generate HTML report
         run: npm run report
 
-      - name: Prepare Pages site
+      - name: Prepare site
         run: |
           mkdir -p _site
           cp reports/evaluation-report.html _site/index.html
-          # Keep a stable named copy as well
           cp reports/evaluation-report.html _site/evaluation-report.html
+          touch _site/.nojekyll
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: _site
-
-  deploy:
-    needs: build-report
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+          force_orphan: true

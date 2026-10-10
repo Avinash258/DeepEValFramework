@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DeepEVal Framework — Evaluation Report</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --panel: #1a2332;
+      --border: #2d3a4f;
+      --text: #e7ecf3;
+      --muted: #9aa8bc;
+      --pass: #3dd68c;
+      --fail: #f07178;
+      --accent: #5eb1ff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: radial-gradient(1200px 600px at 10% -10%, #1c3a5f 0%, transparent 50%),
+                  radial-gradient(900px 500px at 100% 0%, #1a3d32 0%, transparent 45%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+      padding: 2rem 1.25rem 4rem;
+    }
+    .wrap { max-width: 980px; margin: 0 auto; }
+    h1 { margin: 0 0 0.35rem; font-size: 1.75rem; letter-spacing: -0.02em; }
+    .meta { color: var(--muted); margin-bottom: 1.5rem; }
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.1rem;
+    }
+    .card .label { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .card .value { font-size: 1.8rem; font-weight: 700; margin-top: 0.25rem; }
+    .card.pass .value { color: var(--pass); }
+    .card.fail .value { color: var(--fail); }
+    .suite { margin-bottom: 2rem; }
+    .suite-head {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+      margin-bottom: 0.85rem; flex-wrap: wrap;
+    }
+    .suite-head h2 { margin: 0; font-size: 1.25rem; }
+    .pill {
+      display: flex; gap: 0.75rem; color: var(--muted); font-size: 0.9rem;
+      background: var(--panel); border: 1px solid var(--border);
+      padding: 0.35rem 0.75rem; border-radius: 999px;
+    }
+    .pill .ok { color: var(--pass); }
+    .pill .bad { color: var(--fail); }
+    .case {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.1rem;
+      margin-bottom: 0.75rem;
+    }
+    .case.fail { border-color: color-mix(in srgb, var(--fail) 45%, var(--border)); }
+    .case.pass { border-color: color-mix(in srgb, var(--pass) 35%, var(--border)); }
+    .case header { display: grid; gap: 0.2rem; margin-bottom: 0.75rem; }
+    .badge {
+      width: fit-content;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+      padding: 0.15rem 0.45rem; border-radius: 6px;
+    }
+    .case.pass .badge { background: color-mix(in srgb, var(--pass) 22%, transparent); color: var(--pass); }
+    .case.fail .badge { background: color-mix(in srgb, var(--fail) 22%, transparent); color: var(--fail); }
+    h3 { margin: 0; font-size: 1.05rem; }
+    .preview { margin: 0; color: var(--muted); font-size: 0.88rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th, td { text-align: left; padding: 0.45rem 0.35rem; border-top: 1px solid var(--border); vertical-align: top; }
+    th { color: var(--muted); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    td.num { font-variant-numeric: tabular-nums; font-family: ui-monospace, Consolas, monospace; }
+    tr.fail td:nth-child(3) { color: var(--fail); font-weight: 600; }
+    tr.pass td:nth-child(3) { color: var(--pass); }
+    .reason, .error { color: var(--muted); font-size: 0.82rem; }
+    .error { color: var(--fail); }
+    footer { margin-top: 2rem; color: var(--muted); font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>DeepEVal Framework — Evaluation Report</h1>
+    <p class="meta">Generated 10/10/2026, 10:40:50 PM · Judge: heuristic-system-one (offline)</p>
+    <div class="summary">
+      <div class="card"><div class="label">Total cases</div><div class="value">6</div></div>
+      <div class="card pass"><div class="label">Passed</div><div class="value">5</div></div>
+      <div class="card fail"><div class="label">Failed</div><div class="value">1</div></div>
+    </div>
+    <section class="suite">
+    <div class="suite-head">
+      <h2>JevEval — Tool Faithfulness</h2>
+      <div class="pill">
+        <span class="ok">1 passed</span>
+        <span class="bad">0 failed</span>
+        <span>of 1</span>
+      </div>
+    </div>
+    <article class="case pass">
+    <header>
+      <span class="badge">PASS</span>
+      <h3>paris-weather</h3>
+      <p class="preview">What's the weather in Paris right now?</p>
+    </header>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Metric</th>
+          <th>Score</th>
+          <th>Threshold</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody><tr class="pass">
+        <td>✓</td>
+        <td>Tool Faithfulness</td>
+        <td class="num">0.767</td>
+        <td class="num">0.50</td>
+        <td><div class="reason">Decided by heuristic-system-one, minimum confidence 0.33.</div></td>
+      </tr>
+<tr class="pass">
+        <td>✓</td>
+        <td>Tool Faithfulness</td>
+        <td class="num">0.767</td>
+        <td class="num">0.50</td>
+        <td><div class="reason">Decided by heuristic-system-one, minimum confidence 0.33.</div></td>
+      </tr></tbody>
+    </table>
+  </article>
+  </section>
+<section class="suite">
+    <div class="suite-head">
+      <h2>RAG</h2>
+      <div class="pill">
+        <span class="ok">1 passed</span>
+        <span class="bad">1 failed</span>
+        <span>of 2</span>
+      </div>
+    </div>
+    <article class="case pass">
+    <header>
+      <span class="badge">PASS</span>
+      <h3>grounded-answer</h3>
+      <p class="preview">Where is the Eiffel Tower?</p>
+    </header>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Metric</th>
+          <th>Score</th>
+          <th>Threshold</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody><tr class="pass">
+        <td>✓</td>
+        <td>Answer Relevancy</td>
+        <td class="num">0.841</td>
+        <td class="num">0.50</td>
+        <td><div class="reason">Decided by heuristic-system-one, minimum confidence 0.37.</div></td>
+      </tr>
+<tr class="pass">
+        <td>✓</td>
+        <td>Faithfulness</td>
+        <td class="num">0.698</td>
+        <td class="num">0.60</td>
+        <td><div class="reason">Decided by heuristic-system-one, minimum confidence 0.44.</div></td>
+      </tr>
+<tr class="pass">
+        <td>✓</td>
+        <td>Contextual Relevancy</td>
+        <td class="num">0.745</td>
+        <td class="num">0.50</td>
+        <td><div class="reason">Decided by heuristic-system-one, minimum confidence 0.59.</div></td>
+      </tr>
+<tr class="pass">
+        <td>✓</td>
+        <td>Contextual Recall</td>
+        <td class="num">0.745</td>
+        <td class="num">0.50</td>
+        <td><div class="reason">Decided by heuristic-system-one, minimum confidence 0.59.</div></td>
+      </tr></tbody>
+    </table>
+  </article>
+<article class="case fail">
+    <header>
+      <span class="badge">FAIL</span>
+      <h3>hallucinated-detail</h3>
+      <p class="preview">What is the humidity in Paris today?</p>
+    </header>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Metric</th>
+          <th>Score</th>
+          <th>Threshold</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody><tr class="fail">
+        <td>✗</td>
+        <td>Answer Relevancy</td>
+        <td class="num">0.407</td>
+        <td class="num">0.50</td>
+        <td><div class="reason">Decided by heuristic-system-one, minimum confidence 0.14.</div></td>
+      </tr>
+<tr class="fail">
+        <td>✗</td>
+        <td>Faithfulness</td>
+        <td class="num">0.280</td>
+        <td class="num">0.60</td>
+        <td><div class="reason">Decided by heuristic-system-one, minimum confidence 0.50.</div></td>
+      </tr>
+<tr class="pass">
+        <td>✓</td>
+        <td>Contextual Relevancy</td>
+        <td class="num">0.745</td>
+        <td class="num">0.50</td>
+        <td><div class="reason">Decided by heuristic-system-one, minimum confidence 0.59.</div></td>
+      </tr>
+<tr class="pass">
+        <td>✓</td>
+        <td>Contextual Recall</td>
+        <td class="num">0.745</td>
+        <td class="num">0.50</td>
+        <td><div class="reason">Decided by heuristic-system-one, minimum confidence 0.59.</div></td>
+      </tr></tbody>
+    </table>
+  </article>
+  </section>
+<section class="suite">
+    <div class="suite-head">
+      <h2>Chatbot (multi-turn)</h2>
+      <div class="pill">
+        <span class="ok">1 passed</span>
+        <span class="bad">0 failed</span>
+        <span>of 1</span>
+      </div>
+    </div>
+    <article class="case pass">
+    <header>
+      <span class="badge">PASS</span>
+      <h3>late-order-refund</h3>
+      <p class="preview">A customer asks for a refund on a late order.</p>
+    </header>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Metric</th>
+          <th>Score</th>
+          <th>Threshold</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody><tr class="pass">
+        <td>✓</td>
+        <td>Refund Handling</td>
+        <td class="num">0.598</td>
+        <td class="num">0.50</td>
+        <td><div class="reason">Decided by heuristic-system-one, minimum confidence 0.33.</div></td>
+      </tr>
+<tr class="pass">
+        <td>✓</td>
+        <td>Conversation Completeness</td>
+        <td class="num">0.658</td>
+        <td class="num">0.50</td>
+        <td><div class="reason">Decided by heuristic-system-one, minimum confidence 0.46.</div></td>
+      </tr>
+<tr class="pass">
+        <td>✓</td>
+        <td>Knowledge Retention</td>
+        <td class="num">0.727</td>
+        <td class="num">0.50</td>
+        <td><div class="reason">Decided by heuristic-system-one, minimum confidence 0.50.</div></td>
+      </tr>
+<tr class="pass">
+        <td>✓</td>
+        <td>Role Adherence</td>
+        <td class="num">0.677</td>
+        <td class="num">0.50</td>
+        <td><div class="reason">Decided by heuristic-system-one, minimum confidence 0.40.</div></td>
+      </tr>
+<tr class="pass">
+        <td>✓</td>
+        <td>Turn Relevancy</td>
+        <td class="num">0.705</td>
+        <td class="num">0.50</td>
+        <td><div class="reason">Decided by heuristic-system-one, minimum confidence 0.49.</div></td>
+      </tr></tbody>
+    </table>
+  </article>
+  </section>
+<section class="suite">
+    <div class="suite-head">
+      <h2>Agent (tools)</h2>
+      <div class="pill">
+        <span class="ok">2 passed</span>
+        <span class="bad">0 failed</span>
+        <span>of 2</span>
+      </div>
+    </div>
+    <article class="case pass">
+    <header>
+      <span class="badge">PASS</span>
+      <h3>order-status-ok</h3>
+      <p class="preview">Where is my order #1234?</p>
+    </header>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Metric</th>
+          <th>Score</th>
+          <th>Threshold</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody><tr class="pass">
+        <td>✓</td>
+        <td>Task Completion</td>
+        <td class="num">0.763</td>
+        <td class="num">0.50</td>
+        <td><div class="reason">Decided by heuristic-system-one, minimum confidence 0.48.</div></td>
+      </tr>
+<tr class="pass">
+        <td>✓</td>
+        <td>Tool Correctness</td>
+        <td class="num">0.774</td>
+        <td class="num">0.50</td>
+        <td><div class="reason">Decided by heuristic-system-one, minimum confidence 0.49.</div></td>
+      </tr>
+<tr class="pass">
+        <td>✓</td>
+        <td>Tool Faithfulness</td>
+        <td class="num">0.773</td>
+        <td class="num">0.50</td>
+        <td><div class="reason">Decided by heuristic-system-one, minimum confidence 0.35.</div></td>
+      </tr>
+<tr class="pass">
+        <td>✓</td>
+        <td>Argument Correctness</td>
+        <td class="num">0.744</td>
+        <td class="num">0.50</td>
+        <td><div class="reason">Decided by heuristic-system-one, minimum confidence 0.59.</div></td>
+      </tr></tbody>
+    </table>
+  </article>
+<article class="case pass">
+    <header>
+      <span class="badge">PASS</span>
+      <h3>order-status-hallucination</h3>
+      <p class="preview">Where is my order #1234?</p>
+    </header>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Metric</th>
+          <th>Score</th>
+          <th>Threshold</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody><tr class="pass">
+        <td>✓</td>
+        <td>Task Completion</td>
+        <td class="num">0.725</td>
+        <td class="num">0.50</td>
+        <td><div class="reason">Decided by heuristic-system-one, minimum confidence 0.31.</div></td>
+      </tr>
+<tr class="pass">
+        <td>✓</td>
+        <td>Tool Correctness</td>
+        <td class="num">0.774</td>
+        <td class="num">0.50</td>
+        <td><div class="reason">Decided by heuristic-system-one, minimum confidence 0.49.</div></td>
+      </tr>
+<tr class="pass">
+        <td>✓</td>
+        <td>Tool Faithfulness</td>
+        <td class="num">0.690</td>
+        <td class="num">0.50</td>
+        <td><div class="reason">Decided by heuristic-system-one, minimum confidence 0.43.</div></td>
+      </tr>
+<tr class="pass">
+        <td>✓</td>
+        <td>Argument Correctness</td>
+        <td class="num">0.744</td>
+        <td class="num">0.50</td>
+        <td><div class="reason">Decided by heuristic-system-one, minimum confidence 0.59.</div></td>
+      </tr></tbody>
+    </table>
+  </article>
+  </section>
+    <footer>DeepEVal Framework — scores are 0–1; pass when score ≥ threshold.</footer>
+  </div>
+</body>
+</html>

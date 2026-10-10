@@ -26,12 +26,18 @@ npm test
 
 **Live report URL:** https://avinash258.github.io/DeepEValFramework/
 
-### One-time GitHub setup
+### Fix 404 — enable GitHub Pages once
 
-1. Repo → **Settings** → **Pages**
-2. **Source:** GitHub Actions
-3. Push to `main` (or run **Actions → Deploy evaluation report → Run workflow**)
-4. After the workflow succeeds, open the Pages URL above
+The site stays **404** until you turn Pages on. Do this:
+
+1. Open https://github.com/Avinash258/DeepEValFramework/settings/pages  
+2. **Build and deployment → Source** → **Deploy from a branch**  
+3. **Branch:** `gh-pages` → folder **/ (root)** → **Save**  
+   - If `gh-pages` is missing yet, use **`main`** → folder **`/docs`** → **Save** (static report is in `docs/`)  
+4. Wait 1–2 minutes, hard-refresh  
+   https://avinash258.github.io/DeepEValFramework/
+
+After the first push, the **Deploy evaluation report** Action publishes to the `gh-pages` branch automatically. Switch Source to `gh-pages` / `(root)` when that branch appears.
 
 ## Architecture
 
